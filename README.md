@@ -8,7 +8,7 @@
 [![PyTorch](https://img.shields.io/badge/PyTorch-%3C2.0-red.svg)](https://pytorch.org/)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
-This repository contains the source code, data processing pipelines, trained model checkpoints, and evaluation scripts accompanying the paper:
+This repository contains the source code, data processing pipelines, trained model checkpoints, and evaluation scripts accompanying the paper: (LINK to paper TBD)
 
 > *Toyota Research Institute of North America (TRINA)*
 
