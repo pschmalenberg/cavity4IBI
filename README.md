@@ -18,7 +18,6 @@ This repository contains the source code, data processing pipelines, trained mod
 
 ## Table of Contents
 
-- [Abstract](#abstract)
 - [Overview](#overview)
 - [Installation](#installation)
   - [Prerequisites](#prerequisites)
@@ -38,11 +37,6 @@ This repository contains the source code, data processing pipelines, trained mod
 - [License](#license)
 - [Acknowledgements](#acknowledgements)
 
----
-
-## Abstract
-
-Physiological markers are a primary source of prognostic health monitoring systems. Specifically, with heartbeat sensing, many ailments may be identified in their nascent stage. In clinical settings, the human heartbeat is measured by way of an electrocardiogram (ECG). Common metrics for heartbeat analysis include the heart rate (HR), or average beat-to-beat value over time, and heart rate variability (HRV), or variation of beat-to-beat intervals over time. In day-to-day cardiac monitoring, contact-based sensing techniques are realizable using various wearable technologies. Here, we present the design, experimental testing, and proof-of-concept validation of an acoustic Helmholtz resonator cavity for heartbeat sensing in the **[50–120] Hz** frequency range and determination of inter-beat interval (IBI) in a non-invasive manner using sound. Integral to this sensing process, a neural network-based machine learning algorithm is exploited to reconstruct the ECG waveform from the acoustic signal sensed by the cavity. The system achieved a **heart rate estimation error of 4.23 ± 4.50 BPM** and an **R-peak timing MAE of 36.50 ± 53.17 ms** relative to a simultaneously acquired reference ECG.
 
 ---
 
@@ -50,10 +44,7 @@ Physiological markers are a primary source of prognostic health monitoring syste
 
 **Wav2ECG** is the software component of an end-to-end non-invasive cardiac monitoring system that combines a custom-designed **acoustic Helmholtz resonator cavity** with deep neural networks to reconstruct electrocardiogram (ECG) waveforms directly from acoustic heart sound signals.
 
-The Helmholtz resonator cavity is a CNC-machined acoustic sensor tuned to the [50–120] Hz frequency range where cardiac-generated pressure waves reside. A shear-sensing transducer inside the cavity captures heart sounds through layers of clothing and seat foam without any direct body contact. The captured acoustic signal is then processed by a **Conv-TasNet** (Convolutional Time-domain Audio Separation Network) — originally developed for speech separation — which is repurposed here to reconstruct the full ECG waveform including identifiable PQRST morphology.
-
-The framework supports multiple sensor modalities (acoustic cavity, MIRISE accelerometers, and digital stethoscopes), provides a standardized preprocessing pipeline, and includes comprehensive evaluation metrics for inter-beat interval (IBI) accuracy and R-peak localization.
-
+The Helmholtz resonator cavity is an acoustic sensor tuned to the [50–120] Hz frequency range where cardiac-generated pressure waves reside. A pressure-acoustic sensor inside the cavity captures heart sounds through layers of clothing and seat foam without any direct body contact. The captured acoustic signal is then processed by a **Conv-TasNet** (Convolutional Time-domain Audio Separation Network) — originally developed for speech separation — which is repurposed here to reconstruct the full ECG waveform including identifiable PQRST morphology.
 ---
 
 ## Installation
@@ -216,10 +207,6 @@ All dataset classes apply a standardized preprocessing pipeline:
 | Model | Key | Architecture | Parameters | Description |
 |-------|-----|-------------|------------|-------------|
 | **Conv-TasNet** | `conv-tasnet` | 1D Encoder → TCN Separator → Decoder | N=512, L=16, B=128, H=512, P=3, X=8, R=3 | Convolutional Time-domain Audio Separation Network using dilated depthwise separable convolutions. Default and recommended model. |
-| **SepFormer** | `sepformer` | 1D Encoder → Dual-Path Transformer → Decoder | N=64, C=2, L=4, H=4, K=250 | Separation Transformer with intra/inter-chunk self-attention for long-range temporal modeling. |
-| **U-Net** | `unet` | 2D Encoder-Decoder with skip connections | in=2, out=2, features=32 | Classic U-Net operating on spectrograms with BatchNorm and ReLU. |
-| **STFT U-Net** | `stft` | STFT → 2D U-Net → iSTFT | 48→96→192→384 channels | STFT-domain approach; converts 1D audio to complex spectrogram for 2D processing. |
-| **GRL Conv-TasNet** | `grl-convtasnet` | Conv-TasNet + Adversarial Head | Same as Conv-TasNet + MLP | Domain-adaptive variant using Gradient Reversal Layer for cross-dataset generalization. |
 
 ---
 
