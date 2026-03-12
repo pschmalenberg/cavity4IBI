@@ -42,9 +42,7 @@ This repository contains the source code, data processing pipelines, trained mod
 
 ## Overview
 
-**Wav2ECG** is the software component of an end-to-end non-invasive cardiac monitoring system that combines a custom-designed **acoustic Helmholtz resonator cavity** with deep neural networks to reconstruct electrocardiogram (ECG) waveforms directly from acoustic heart sound signals.
-
-The Helmholtz resonator cavity is an acoustic sensor tuned to the [50–120] Hz frequency range where cardiac-generated pressure waves reside. A pressure-acoustic sensor inside the cavity captures heart sounds through layers of clothing and seat foam without any direct body contact. The captured acoustic signal is then processed by a **Conv-TasNet** (Convolutional Time-domain Audio Separation Network) — originally developed for speech separation — which is repurposed here to reconstruct the full ECG waveform including identifiable PQRST morphology.
+**Wav2ECG** is the software component of an end-to-end non-invasive cardiac monitoring system that combines a custom-designed **acoustic Helmholtz resonator cavity** with deep neural networks to reconstruct electrocardiogram (ECG) waveforms directly from acoustic heart sound signals. The Helmholtz resonator cavity is an acoustic sensor tuned to the [50–120] Hz frequency range where cardiac-generated pressure waves reside. A pressure-acoustic sensor inside the cavity captures heart sounds through layers of clothing and seat foam without any direct body contact. The captured acoustic signal is then processed by a **Conv-TasNet** (Convolutional Time-domain Audio Separation Network) — originally developed for speech separation — which is repurposed here to reconstruct the full ECG waveform including identifiable PQRST morphology.
 ---
 
 ## Installation
