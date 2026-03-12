@@ -118,10 +118,9 @@ wav2ecg/
 │   └── r_peaks.py                      # R-peak localization accuracy
 │
 ├── ckpt/                               # Trained model checkpoints (.pt)
-├── cavity_data/                        # Dataset storage
-│   └── _processed/                     # Pre-processed segments
-├── dtw_analysis/                       # DTW analysis outputs
+├── checkpoint.pt/                        # Dataset storage
 │
+├── notebooks/                       # DTW analysis outputs
 ├── check_nn_performance.ipynb          # NN performance evaluation notebook
 ├── inspect_cavity_data.ipynb           # Cavity data inspection notebook
 └── dynamic_time_warping.ipynb          # DTW analysis notebook
@@ -263,7 +262,9 @@ The project includes several Jupyter notebooks for detailed result analysis:
 
 If you use this code, framework, or data pipeline in your research, please cite the following paper:
 
-```TBD
+```
+TBD
+
 ```
 ---
 
