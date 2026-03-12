@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="assets/banner.png" alt="Wav2ECG Banner" width="400"/>
+<img src="assets/banner.png" alt="Wav2ECG Banner" width="200"/>
 
 # Wav2ECG: Non-Invasive Cardiac Sensing via Acoustic Helmholtz Resonator Cavity
 
