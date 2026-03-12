@@ -10,8 +10,6 @@
 
 This repository contains the source code, data processing pipelines, trained model checkpoints, and evaluation scripts accompanying the paper:
 
-> **"Non-invasive cardiac sensing via an acoustic Helmholtz resonator cavity with electrocardiogram waveform reconstruction"**
->>
 > *Toyota Research Institute of North America (TRINA)*
 
 </div>
