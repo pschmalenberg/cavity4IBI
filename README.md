@@ -34,7 +34,6 @@ This repository contains the source code, data processing pipelines, trained mod
 - [Training](#training)
 - [Inference](#inference)
   - [Single-File Prediction](#single-file-prediction)
-- [Evaluation Metrics](#evaluation-metrics)
   - [Analysis Notebooks](#analysis-notebooks)
 - [Citation](#citation)
 - [Related Work](#related-work)
@@ -90,26 +89,18 @@ The framework supports multiple sensor modalities (acoustic cavity, MIRISE accel
    pip install -e .
    ```
 
-   This installs all required dependencies listed below:
+   This installs all required dependencies listed below, look for requirement.txt for complete list. 
 
-   | Package | Version | Purpose |
-   |---------|---------|---------|
-   | `torch` | < 2.0.0 | Deep learning framework |
-   | `torchaudio` | latest | Audio processing and resampling |
-   | `asteroid` | latest | Speech separation model baselines |
-   | `neurokit2` | latest | ECG signal processing and cleaning |
-   | `scipy` | == 1.10 | Signal filtering and peak detection |
-   | `numpy` | latest | Numerical operations |
-   | `matplotlib` | latest | Visualization |
-   | `pandas` | latest | Data manipulation |
-   | `tqdm` | latest | Progress bars |
-   | `tensorboard` | latest | Training monitoring |
-   | `auraloss` | latest | Audio-domain loss functions |
-   | `einops` | latest | Tensor operations |
-   | `opt_einsum` | latest | Optimized Einstein summation |
-   | `fire` | latest | CLI interface |
-   | `gdown` | latest | Google Drive downloads |
-
+   | Package | Version 
+   |---------|---------|
+   | `torch` | < 2.0.1 |
+   | `torchaudio` | 2.02 |
+   | `asteroid` | 0.6.0 | 
+   | `neurokit2` | 0.2.5 | 
+   | `scipy` | == 1.10 | 
+   | `numpy` | 1.25.2 | 
+   | `pandas` | 2.0.3 | 
+   | `tensorboard` | 2.14.0 | 
 ---
 
 ## Project Structure
@@ -193,6 +184,7 @@ dir_dataset = "..."               # Dataset root directory
 ## Datasets
 
 ### Supported Data Sources
+Link to the data: TBD
 
 | Dataset | Sensor Type | Native Sample Rate | Format | Description |
 |---------|------------|-------------------|--------|-------------|
@@ -285,36 +277,6 @@ The script will:
 
 ---
 
-## Evaluation Metrics
-
-| Metric | Function | Description |
-|--------|----------|-------------|
-| **MSE** | `evaluate_rec()` | Mean Squared Error between reconstructed and ground truth ECG waveforms |
-| **R-Peak Accuracy** | `r_peak_accuracy()` | Percentage of correctly localized R-peaks within ±5 ms tolerance (configurable) |
-| **RR Intervals** | `rr_intervals()` | Mean Absolute Error of RR interval durations (ms) between predicted and true ECG |
-| **Heart Rate** | `heart_rate()` | Heart rate estimation accuracy in BPM |
-| **HRI MAE** | `get_global_mae()` | Global Heart Rate Interval MAE across continuous recordings |
-| **DTW** | Dynamic Time Warping | Temporal alignment distance between predicted and true waveforms |
-| **Pearson Correlation** | `pearsonr()` | Linear correlation coefficient between predicted and true signals |
-
-**Example usage:**
-
-```python
-from metrics import *
-
-# Load predictions
-y_true, y_pred = evaluate_rec("cavity_data", "cavity_data", "conv-tasnet")
-
-# R-peak analysis
-pos_true, pos_pred = r_peak_accuracy(y_true, y_pred, sr=2000, error=0.005, return_pos=True)
-
-# Heart rate metrics
-rr_intervals(pos_true, pos_pred, sr=2000)
-heart_rate(pos_true, pos_pred, sr=2000)
-```
-
----
-
 ### Analysis Notebooks
 
 The project includes several Jupyter notebooks for detailed result analysis:
@@ -331,7 +293,6 @@ If you use this code, framework, or data pipeline in your research, please cite 
 
 ```TBD
 ```
-
 ---
 
 ## Related Work
