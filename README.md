@@ -15,8 +15,6 @@ This repository contains the source code, data processing pipelines, trained mod
 </div>
 
 ---
---
-
 ## Overview
 ---
 
