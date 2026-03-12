@@ -16,7 +16,6 @@ This repository contains the source code, data processing pipelines, trained mod
 
 ---
 ## Overview
----
 
 **Wav2ECG** is the software component of an end-to-end non-invasive cardiac monitoring system that combines a custom-designed **acoustic Helmholtz resonator cavity** with deep neural networks to reconstruct electrocardiogram (ECG) waveforms directly from acoustic heart sound signals. The Helmholtz resonator cavity is an acoustic sensor tuned to the [50–120] Hz frequency range where cardiac-generated pressure waves reside. A pressure-acoustic sensor inside the cavity captures heart sounds through layers of clothing and seat foam without any direct body contact. The captured acoustic signal is then processed by a **Conv-TasNet** (Convolutional Time-domain Audio Separation Network) — originally developed for speech separation — which is repurposed here to reconstruct the full ECG waveform including identifiable PQRST morphology.
 
@@ -84,7 +83,7 @@ This repository contains the source code, data processing pipelines, trained mod
    | `torchaudio` | 2.02 |
    | `asteroid` | 0.6.0 | 
    | `neurokit2` | 0.2.5 | 
-   | `scipy` | == 1.10 | 
+   | `scipy` | 1.10 | 
    | `numpy` | 1.25.2 | 
    | `pandas` | 2.0.3 | 
    | `tensorboard` | 2.14.0 | 
@@ -284,13 +283,7 @@ This project builds on and references the following prior work:
 
 - **Conv-TasNet:** Luo, Y., & Mesgarani, N. (2019). *Conv-TasNet: Surpassing Ideal Time–Frequency Magnitude Masking for Speech Separation.* IEEE/ACM Transactions on Audio, Speech, and Language Processing, 27(8), 1256–1266. [DOI: 10.1109/TASLP.2019.2915167](https://doi.org/10.1109/TASLP.2019.2915167)
 
-- **TASNet:** Luo, Y., & Mesgarani, N. (2018). *TASNet: Time-domain audio separation network for real-time, single-channel speech separation.* Proceedings of ICASSP 2018. [DOI: 10.1109/ICASSP.2018.8462116](https://doi.org/10.1109/ICASSP.2018.8462116)
-
-- **SepFormer:** Subakan, C., Ravanelli, M., Cornell, S., Bronzi, M., & Zhong, J. (2021). *Attention is All You Need in Speech Separation.* Proceedings of ICASSP 2021. [DOI: 10.1109/ICASSP39728.2021.9413901](https://doi.org/10.1109/ICASSP39728.2021.9413901)
-
 - **FastNVG R-Peak Detection:** Emrich, J., Koka, T., Wirth, S., & Muma, M. (2023). *Accelerated sample-accurate R-peak detectors based on visibility graphs.* Proceedings of EUSIPCO 2023. [DOI: 10.23919/EUSIPCO58844.2023.10290007](https://doi.org/10.23919/EUSIPCO58844.2023.10290007)
-
-- **auraloss:** Steinmetz, C. J., & Reiss, J. D. (2020). *auraloss: Audio focused loss functions in PyTorch.* Digital Music Research Network One-day Workshop (DMRN+15).
 
 - **NeuroKit2:** Makowski, D. et al. (2021). *NeuroKit2: A Python toolbox for neurophysiological signal processing.* Behavior Research Methods, 53(4), 1689–1696. [DOI: 10.3758/s13428-020-01516-y](https://doi.org/10.3758/s13428-020-01516-y)
 
@@ -312,7 +305,5 @@ This project is licensed under the **MIT License**. See the [LICENSE](LICENSE) f
 ---
 
 <div align="center">
-
-**Wav2ECG** — *Non-invasive cardiac monitoring through acoustic sensing and deep learning*
 
 </div>
