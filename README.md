@@ -17,7 +17,7 @@ This repository contains the source code, data processing pipelines, trained mod
 ---
 ## Overview
 
-**Wav2ECG** is the software component of an end-to-end non-invasive cardiac monitoring system that combines a custom-designed **acoustic Helmholtz resonator cavity** with deep neural networks to reconstruct electrocardiogram (ECG) waveforms directly from acoustic heart sound signals. The Helmholtz resonator cavity is an acoustic sensor tuned to the [50–120] Hz frequency range where cardiac-generated pressure waves reside. A pressure-acoustic sensor inside the cavity captures heart sounds through layers of clothing and seat foam without any direct body contact. The captured acoustic signal is then processed by a **Conv-TasNet** (Convolutional Time-domain Audio Separation Network) — originally developed for speech separation — which is repurposed here to reconstruct the full ECG waveform including identifiable PQRST morphology.
+**Wav2ECG** is the software component of an end-to-end non-invasive cardiac monitoring system that combines a custom-designed **acoustic Helmholtz resonator cavity** with deep neural networks to reconstruct electrocardiogram (ECG) waveforms directly from acoustic heart sound signals. The Helmholtz resonator cavity is an acoustic sensor tuned to the [50–120] Hz frequency range where cardiac-generated pressure waves reside. A pressure-acoustic sensor inside the cavity captures heart sounds through layers of clothing and seat foam without any direct body contact. The captured acoustic signal is then processed by a **Conv-TasNet** (Convolutional Time-domain Audio Separation Network, originally developed for speech separation) which is repurposed here to reconstruct the full ECG waveform including identifiable PQRST morphology.
 
 ---
 
@@ -98,38 +98,28 @@ wav2ecg/
 ├── inference.py                        # Batch inference on test split
 ├── inference_mc_mae.py                 # Multi-channel inference with MAE analysis
 ├── print_global_mae.py                 # Global HRI MAE and heart rate analysis
-├── [unlabeled_data]inference.py        # Inference on unlabeled/unseen data
 ├── methods.py                          # Auxiliary helper methods
 ├── utils.py                            # Global configuration and parameters
 ├── setup.py                            # Package installation script
 ├── README.md                           # This file
 │
 ├── loaders/                            # Dataset loading classes
-│   ├── __init__.py                     #   get_dataset() factory function
-│   ├── cavity.py                       #   CavityDataset  (4 kHz cavity accelerometer)
-│   ├── mirise.py                       #   MIRISEDataset  (3.2 kHz MIRISE accelerometer)
-│   ├── steth.py                        #   StethDataset   (40 kHz digital stethoscope)
-│   └── pardo_old.py                    #   PardoDataset   [DEPRECATED]
+│   ├── __init__.py                     # get_dataset() factory function
+│   ├── cavity.py                       # CavityDataset  (4 kHz cavity accelerometer)
 │
 ├── models/                             # Neural network architectures
-│   ├── __init__.py                     #   Model exports
-│   ├── convtasnet.py                   #   Conv-TasNet + GRL variant
-│   ├── sepformer.py                    #   SepFormer (Transformer-based)
-│   ├── unet.py                         #   Standard U-Net
-│   └── pardo_model.py                  #   STFT-domain U-Net
+│   ├── __init__.py                     # Model exports
+│   ├── convtasnet.py                   # Conv-TasNet + GRL variant
 │
 ├── metrics/                            # Evaluation metrics
-│   ├── __init__.py                     #   Metric exports
-│   ├── heart_rate.py                   #   RR intervals and heart rate (BPM)
-│   ├── mse_rec.py                      #   Mean Squared Error (MSE)
-│   └── r_peaks.py                      #   R-peak localization accuracy
-│
-├── scripts/                            # Additional scripts
-│   └── __init__.py
+│   ├── __init__.py                     # Metric exports
+│   ├── heart_rate.py                   # RR intervals and heart rate (BPM)
+│   ├── mse_rec.py                      # Mean Squared Error (MSE)
+│   └── r_peaks.py                      # R-peak localization accuracy
 │
 ├── ckpt/                               # Trained model checkpoints (.pt)
 ├── cavity_data/                        # Dataset storage
-│   └── _processed/                     #   Pre-processed segments
+│   └── _processed/                     # Pre-processed segments
 ├── dtw_analysis/                       # DTW analysis outputs
 │
 ├── check_nn_performance.ipynb          # NN performance evaluation notebook
