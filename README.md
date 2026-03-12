@@ -23,7 +23,6 @@ This repository contains the source code, data processing pipelines, trained mod
 
 ## Table of Contents
 
-- [Overview](#overview)
 - [Installation](#installation)
   - [Prerequisites](#prerequisites)
   - [Setup](#setup)
@@ -118,7 +117,7 @@ wav2ecg/
 │   └── r_peaks.py                      # R-peak localization accuracy
 │
 ├── ckpt/                               # Trained model checkpoints (.pt)
-├── checkpoint.pt/                        # Dataset storage
+├── checkpoint.pth/                        # Dataset storage
 │
 ├── notebooks/                       # DTW analysis outputs
 ├── check_nn_performance.ipynb          # NN performance evaluation notebook
