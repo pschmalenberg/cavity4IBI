@@ -104,12 +104,12 @@ wav2ecg/
 ├── README.md                           # This file
 │
 ├── loaders/                            # Dataset loading classes
-│   ├── __init__.py                     # get_dataset() factory function
-│   ├── cavity.py                       # CavityDataset  (4 kHz cavity accelerometer)
+│   ├── __init__.py                     # get_dataset()
+│   ├── cavity.py                       # CavityDataset (4 kHz pressure-acoustic signal)
 │
 ├── models/                             # Neural network architectures
 │   ├── __init__.py                     # Model exports
-│   ├── convtasnet.py                   # Conv-TasNet + GRL variant
+│   ├── convtasnet.py                   # Conv-TasNet
 │
 ├── metrics/                            # Evaluation metrics
 │   ├── __init__.py                     # Metric exports
