@@ -2,7 +2,7 @@
 
 <img src="assets/banner.png" alt="Wav2ECG Banner" width="200"/>
 
-# Wav2ECG: Non-Invasive Cardiac Sensing via Acoustic Helmholtz Resonator Cavity
+# AcousticECG: Non-Invasive Cardiac Sensing via Acoustic Helmholtz Resonator Cavity
 
 [![Python](https://img.shields.io/badge/Python-%3E%3D3.11-blue.svg)](https://www.python.org/)
 [![PyTorch](https://img.shields.io/badge/PyTorch-%3C2.0-red.svg)](https://pytorch.org/)
