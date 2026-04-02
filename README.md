@@ -158,7 +158,7 @@ dir_dataset = "..."               # Dataset root directory
 ## Datasets
 
 ### Supported Data Sources
-Link to the data: TBD
+Link to the data: (https://figshare.com/account/articles/31855450)
 
 | Dataset | Sensor Type | Native Sample Rate | Format | Description |
 |---------|------------|-------------------|--------|-------------|
