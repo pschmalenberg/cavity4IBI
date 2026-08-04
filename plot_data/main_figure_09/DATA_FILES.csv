@@ -1,5 +1,0 @@
-file,role,status,notes
-HT06filt.mat,numerical input,retained original,Contains processed audio array y_filt
-plot_figure_09.m,plot producer,package generated,Standalone extraction of the retained FFT plotting section
-fig4_gen.m,plot producer,retained original,Combined Figure 4 and Figure 9 producer; use plot_figure_09.m locally
-README.md,provenance,package generated,Documents MATLAB reproduction

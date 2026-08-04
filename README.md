@@ -50,17 +50,11 @@ This repository contains the source code, data processing pipelines, trained mod
 
 | Level | Inputs | Command or tool |
 |-------|--------|-----------------|
-| Integrity check | Included files | `python verify_release.py` |
-| P11 metrics | Included reference summaries | `python reproduce_reference_metrics.py --skip-dtw` |
-| P11 DTW | Included reference summaries | `python reproduce_reference_metrics.py` |
 | Inference | Checkpoint + processed Figshare data | `python run_inference.py --dataset-root PATH` |
 | Training | Processed train/validation data | `python wav2ecg.py` |
 | Raw preprocessing | Figshare recordings | `preprocessing_matlab/` (MATLAB required) |
-| Published figures | Per-figure retained data and code | `plot_data/` (see its `README.md`) |
 | Circuit model | Included MATLAB source | `circuit_model/circuit_hemholtz.m` (MATLAB required) |
 | Numerical model | Included `.mph` files | COMSOL Multiphysics 6.3 required |
-
-See [`reference_results/README.md`](reference_results/README.md) for the provenance of every retained result before using it as a baseline.
 
 ---
 
@@ -71,7 +65,6 @@ See [`reference_results/README.md`](reference_results/README.md) for the provena
 - [`DATASET_CARD.md`](DATASET_CARD.md) — dataset identity, collection scope, exclusions, splits, intended use
 - [`MODEL_CARD.md`](MODEL_CARD.md) — model scope, architecture, checkpoint, evaluation, limitations
 - [`COMPUTE_RESOURCES.md`](COMPUTE_RESOURCES.md) — reported hardware and compute costs
-- [`REPRODUCIBILITY_NOTES.md`](REPRODUCIBILITY_NOTES.md) — implementation-grounded settings and paper corrections
 
 ---
 
@@ -122,14 +115,6 @@ See [`reference_results/README.md`](reference_results/README.md) for the provena
    | `matplotlib` | 3.7.2 |
    | `tqdm` | 4.66.0 |
 
-4. **Verify the release:**
-
-   ```bash
-   python verify_release.py
-   ```
-
-   This hashes the checkpoint, checks all 13 Figshare manifest entries, and validates the retained reference summary values. It does not load the model or raw recordings.
-
 ---
 
 ## Project Structure
@@ -138,8 +123,6 @@ See [`reference_results/README.md`](reference_results/README.md) for the provena
 cavity4IBI/
 ├── wav2ecg.py                          # Main training script
 ├── run_inference.py                    # Portable inference CLI (recommended)
-├── reproduce_reference_metrics.py      # Reproduce reported reference metrics
-├── verify_release.py                   # Release integrity checker
 ├── predict.py                          # Single-file ECG prediction from audio
 ├── inference.py                        # Legacy batch inference (analysis provenance)
 ├── inference_mc_mae.py                 # Legacy multi-channel MAE analysis
@@ -163,11 +146,7 @@ cavity4IBI/
 │   └── r_peaks.py                      # R-peak localization accuracy
 │
 ├── preprocessing_matlab/               # Raw → processed dataset generation (MATLAB)
-├── plot_data/                          # Per-figure source data, code, and manifests
-├── data/                               # Figshare manifest and data instructions
-├── ckpt/                               # Trained checkpoint (.pth) + manifest
-├── reference_results/                  # Retained reference outputs and provenance
-├── figures/                            # MATLAB figure sources and compact data
+├── ckpt/                               # Trained checkpoint (.pth)
 ├── circuit_model/                      # MATLAB Helmholtz circuit model
 ├── numerical_model/                    # COMSOL 6.3 model files
 └── notebooks/                          # Exploratory / evaluation notebooks
@@ -215,7 +194,7 @@ $env:CAVITY_OUTPUT_DIR  = "C:\path\to\outputs"
 Raw synchronized recordings are hosted on Figshare rather than duplicated in Git:
 <https://doi.org/10.6084/m9.figshare.31855450>
 
-The record contains 13 recordings (P1–P13), approximately 2.96 GB total. File sizes, MD5 hashes, direct URLs, and participant mappings are listed in [`data/figshare_manifest.csv`](data/figshare_manifest.csv). See [`data/README.md`](data/README.md) for the expected layout.
+The record contains 13 recordings (P1–P13), approximately 2.96 GB total. File sizes, MD5 hashes, direct URLs, and participant mappings are published with the Figshare record.
 
 | Dataset | Sensor Type | Native Sample Rate | Format | Description |
 |---------|------------|-------------------|--------|-------------|
@@ -289,16 +268,9 @@ python run_inference.py \
 This writes prediction, reference, and source-name arrays using the canonical
 checkpoint stem. It uses `model.eval()` and `torch.inference_mode()`.
 
-To reproduce the reported reference metrics:
-
-```bash
-python reproduce_reference_metrics.py --skip-dtw   # fast
-python reproduce_reference_metrics.py              # includes DTW, slower
-```
-
 The legacy `inference.py`, `inference_mc_mae.py`, `predict.py`, and
 `print_global_mae.py` scripts are retained as analysis provenance and still
-contain experiment-specific control flow. Prefer the two commands above for
+contain experiment-specific control flow. Prefer `run_inference.py` for
 portable runs.
 
 ### Single-File Prediction
@@ -360,18 +332,11 @@ This project builds on and references the following prior work:
 
 The Python implementation in this repository is the ground truth for training and
 evaluation; the MATLAB sources under `preprocessing_matlab/` are the ground truth
-for raw preprocessing. [`REPRODUCIBILITY_NOTES.md`](REPRODUCIBILITY_NOTES.md)
-records the resolved learning rate, augmentation, split, filtering,
-normalization, and input-length behavior, plus the exact main-paper and
-supplement corrections still required.
+for raw preprocessing.
 
 **No random seed is set**, so exact bitwise retraining is not guaranteed.
-Reference results retained in `reference_results/` carry provenance caveats \u2014
-read [`reference_results/README.md`](reference_results/README.md) before using
-any of them as a baseline. Per-figure source data and its limitations are
-documented in [`plot_data/README.md`](plot_data/README.md) and
-[`plot_data/MISSING_SOURCES.md`](plot_data/MISSING_SOURCES.md); full per-window
-output arrays for P12 are archived externally rather than in Git.
+Reference outputs, per-figure source data, and full per-window output arrays are
+archived externally rather than in Git.
 
 ---
 

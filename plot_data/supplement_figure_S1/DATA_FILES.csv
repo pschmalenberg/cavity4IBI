@@ -1,9 +1,0 @@
-file,role,status,notes
-continuous_real_2831.csv,numerical input,retained original,Measured continuous ECG trace
-continuous_pred_2831.csv,numerical input,retained original,Reconstructed continuous ECG trace
-plot_s1.py,plot producer,package generated,Reads the two local CSV files and reproduces the legacy plotting path
-figure_S1.png,source rendering,retained original,2000 by 400 source PNG used in the paper
-figure_S1_paper.png,published rendering,PDF extracted,Image object embedded on supplementary PDF page 8
-print_global_mae.py,legacy producer,retained original,Contains the original continuous-trace assembly and plot function
-requirements.txt,software environment,package generated,Python plotting dependencies
-README.md,provenance,package generated,Documents sample selection and rendering
