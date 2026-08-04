@@ -1,4 +1,7 @@
 import os 
+
+release_root = os.path.dirname(os.path.abspath(__file__))
+
 # data parameters
 data_name = "cavity_data"
 test_name = "cavity_data"
@@ -18,30 +21,10 @@ hop_length = 128
 
 pc_name = "449443" #"Admin"
 
-#C:\Users\Admin\Desktop\2025 Cavity\2025 Neural Network\ckpt
-#directory where checkpoint will be saved 
-dir_save = os.path.join("C:\\","Users","Admin",
-                        "Desktop","2025 Cavity",
-                        "2025 Neural Network","ckpt")
-
-
-#directory where dataset is stored
-#inside this dir there should be a sub-folder called [input]
-# and another one called [wide_gaussian]
-#dir_dataset = os.path.join("C:\\","Users","Admin","Desktop",
-#                                "2025 Cavity","2025 Cavity Data Collection",
-#                               "dataset")
-
-#directory for the inference data
-#training use : wide_gaussian use: C:\Users\Admin\Desktop\2025 Cavity\2025 Cavity Data Collection\dataset
-#for inferecne 
-#for gaussian
-#dir_dataset = os.path.join(r"C:\Users\Admin\Desktop\2025 Cavity\2025 Cavity Data Collection\inference_dataset\Inference_by_p\P7")
-#for ecg
-dir_dataset = os.path.join(r'C:\Users\Admin\Desktop\2025 Cavity\2025 Cavity Data Collection\raw_ECG_inference_dataset\Inference_by_p\P12')
-######################
-#for raw ECG training 
-#dir_dataset = os.path.join(r"C:\Users\Admin\Desktop\2025 Cavity\2025 Cavity Data Collection\dataset_raw_ECG")
+dir_save = os.environ.get("CAVITY_OUTPUT_DIR", os.path.join(release_root, "outputs"))
+dir_dataset = os.environ.get(
+    "CAVITY_DATASET_DIR", os.path.join(release_root, "data", "processed")
+)
 
 
 

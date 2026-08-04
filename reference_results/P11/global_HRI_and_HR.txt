@@ -1,0 +1,6 @@
+
+    Global MAE: 0.022837349397590363
+    Global HR: 89.96%
+    Ground truth HR: 74.2bpm
+    PREDICTION HR: 66.8bpm
+    

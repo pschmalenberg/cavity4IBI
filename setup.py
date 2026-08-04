@@ -1,36 +1,28 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import io, os, sys
-from shutil import rmtree
-from setuptools import find_packages, setup, Command
+import io, os
+from setuptools import find_packages, setup
 
 # Package metadata
-NAME = "wav2ecg"
-DESCRIPTION = "ECG Reconstruction from Spatial Audio"
-URL = "https://github.com/klean2050/wav2ecg"
-EMAIL = "k.avramidist@windowslive.com"
-AUTHOR = "Kleanthis Avramidis"
-REQUIRES_PYTHON = ">=3.9.0"
-VERSION = "0.1.0"
+NAME = "cavity4ibi"
+DESCRIPTION = "ECG reconstruction from acoustic Helmholtz cavity signals"
+URL = "https://github.com/pschmalenberg/cavity4IBI"
+AUTHOR = "Paul D. Schmalenberg et al."
+REQUIRES_PYTHON = ">=3.11,<3.12"
+VERSION = "1.0.0"
 
 REQUIRED = [
-    "asteroid",
-    "fire",
-    "gdown",
-    "einops",
-    "matplotlib",
-    "numpy",
-    "pandas",
-    "pytest",
-    "scipy==1.10",
-    "setuptools",
-    "torch<2.0.0",
-    "torchaudio",
-    "tensorboard",
-    "neurokit2",
-    "tqdm",
-    "opt_einsum",
+    "auraloss==0.4.0",
+    "dtw-python==1.5.3",
+    "matplotlib==3.7.2",
+    "neurokit2==0.2.5",
+    "numpy==1.25.2",
+    "pandas==2.0.3",
+    "scipy==1.10.0",
+    "torch==2.0.1",
+    "torchaudio==2.0.2",
+    "tqdm==4.66.0",
 ]
 
 EXTRAS = {}
@@ -57,43 +49,6 @@ else:
     about["__version__"] = VERSION
 
 
-class UploadCommand(Command):
-    """Support setup.py upload."""
-
-    description = "Build and publish the package."
-    user_options = []
-
-    @staticmethod
-    def status(s):
-        """Prints things in bold."""
-        print("\033[1m{0}\033[0m".format(s))
-
-    def initialize_options(self):
-        pass
-
-    def finalize_options(self):
-        pass
-
-    def run(self):
-        try:
-            self.status("Removing previous builds…")
-            rmtree(os.path.join(here, "dist"))
-        except OSError:
-            pass
-
-        self.status("Building Source and Wheel (universal) distribution…")
-        os.system("{0} setup.py sdist bdist_wheel --universal".format(sys.executable))
-
-        self.status("Uploading the package to PyPI via Twine…")
-        os.system("twine upload dist/*")
-
-        self.status("Pushing git tags…")
-        os.system("git tag v{0}".format(about["__version__"]))
-        os.system("git push --tags")
-
-        sys.exit()
-
-
 # Where the magic happens:
 setup(
     name=NAME,
@@ -102,7 +57,6 @@ setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     author=AUTHOR,
-    author_email=EMAIL,
     python_requires=REQUIRES_PYTHON,
     url=URL,
     packages=find_packages(exclude=["tests", "*.tests", "*.tests.*", "tests.*"]),
@@ -116,12 +70,7 @@ setup(
         "License :: OSI Approved :: MIT License",
         "Programming Language :: Python",
         "Programming Language :: Python :: 3",
-        "Programming Language :: Python :: 3.9",
+        "Programming Language :: Python :: 3.11",
         "Programming Language :: Python :: Implementation :: CPython",
-        "Programming Language :: Python :: Implementation :: PyPy",
     ],
-    # $ setup.py publish support.
-    cmdclass={
-        "upload": UploadCommand,
-    },
 )

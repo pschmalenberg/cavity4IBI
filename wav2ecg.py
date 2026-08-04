@@ -28,17 +28,11 @@ classes = {
 n_classes = classes[data_name]
 print(f"batch size: {batch_size}")
 
-device = torch.device("cuda" if torch.cuda.is_available else "cpu") 
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-models = {
-    "stft": STFTUNet(),
-    "unet": UNet(in_channels=2, out_channels=2, init_features=32),
-    "conv-tasnet": ConvTasNet(),
-    #"speech-convtasnet": Speech_ConvTasNet(checkpoint),
-    "sepformer": Sepformer(),
-}
-
-model = models[model_name]
+if model_name != "conv-tasnet":
+    raise ValueError("This paper release includes only the Conv-TasNet model")
+model = ConvTasNet()
 model.to(device)
 model.train()
 
@@ -105,9 +99,13 @@ for epoch in range(num_epochs):
         "train": 0,
         "valid": 0,
     }
+    batch_count = {
+        "train": 0,
+        "valid": 0,
+    }
 
     # run training batches
-    for pcg, ecg, _ in tqdm(loaders["train"]):
+    for pcg, ecg, pcg_name in tqdm(loaders["train"]):
         # Move data to device
         pcg = pcg.to(device)
         ecg = ecg.to(device)
@@ -126,10 +124,11 @@ for epoch in range(num_epochs):
         # this condition was created to check if calculations are returning 
         # NaN, which can happen if there's a corrupt file. 
         # The batch files involved will be printed and can be later deleted 
-        if torch.isnan(loss):
+        if not torch.isfinite(loss):
             print("Loss is returning nan values. Here are the batch elements involved:")
             for element in pcg_name:
                 print(element)
+            continue
 
         optimizer.zero_grad()
         loss.backward()
@@ -137,37 +136,38 @@ for epoch in range(num_epochs):
 
         # Accumulate loss
         total_loss["train"] += loss.item()
+        batch_count["train"] += 1
 
     # run validation batches
+    model.eval()
     for pcg, ecg, pcg_name in loaders["valid"]:
         # Move data to device
         pcg = pcg.to(device)
         ecg = ecg.to(device)
 
-        # Forward Pass
-        # ecg_est_freq = model(pcg_freq)
-        ecg_pred = model(pcg)
-        if model_name == "sepformer" or model_name == "speech-convtasnet":
-            ecg_pred = ecg_pred[:, 0]
-        else:
-            ecg_pred = ecg_pred[0]
-
-        loss = time.LogCoshLoss()(ecg_pred, ecg)
+        with torch.no_grad():
+            ecg_pred = model(pcg)[0]
+            loss = time.LogCoshLoss()(ecg_pred, ecg)
 
         # this condition was created to check if calculations are returning 
         # NaN, which can happen if there's a corrupt file. 
         # The batch files involved will be printed and can be later deleted 
-        if torch.isnan(loss):
+        if not torch.isfinite(loss):
             print("Loss is returning nan values. Here are the batch elements involved:")
             for element in pcg_name:
                 print(element)
+            continue
 
         # Compute loss
         total_loss["valid"] += loss.item()
+        batch_count["valid"] += 1
+    model.train()
 
     # Print average loss for the epoch
-    avg_loss_train = total_loss["train"] / len(loaders["train"])
-    avg_loss_valid = total_loss["valid"] / len(loaders["valid"])
+    if batch_count["train"] == 0 or batch_count["valid"] == 0:
+        raise RuntimeError("No finite train or validation batches were available")
+    avg_loss_train = total_loss["train"] / batch_count["train"]
+    avg_loss_valid = total_loss["valid"] / batch_count["valid"]
 
     print(f"\nEpoch {epoch + 1}/{num_epochs}")
     print(f"Train Loss: {avg_loss_train}")

@@ -1,0 +1,6 @@
+Metric,Value
+Pearson Correlation,0.7408
+Pearson p-value,0.0
+DTW Distance,2081.8289
+DTW Normalized Distance,0.045654
+Downsample Factor (DTW),10

@@ -1,0 +1,2 @@
+file_name,size_bytes,sha256,format,parameter_count
+2025-11-22_23h02min.pth,45260109,14732b97b405d781406278bc5c4be0f5e91e1acc4888f0c209bf12d8c23ef5c7,PyTorch OrderedDict state_dict,11280569

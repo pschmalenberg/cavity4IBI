@@ -1,0 +1,7 @@
+metric,value,unit,paper_location
+R-peak timing MAE,0.022837349397590363,seconds,Table 3 and Table S1 (P11)
+Ground-truth heart rate,74.2,BPM,Table S1 (P11)
+Predicted heart rate,66.8,BPM,Table S1 (P11)
+Pearson correlation,0.7408,unitless,Table S2 (P11)
+Normalized DTW distance,0.045654,unitless,Table S2 (P11)
+DTW downsample factor,10,unitless,Retained analysis output
