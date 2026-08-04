@@ -1,0 +1,13 @@
+{
+  "title": "Main Figure 5 ECG reconstruction data",
+  "description": "Measured and neural-network reconstructed ECG epochs used in Main Figure 5.",
+  "sample_rate_hz": 2000,
+  "epoch_duration_seconds": 4,
+  "epochs_per_recording": 3,
+  "native_recording_duration_seconds": 12,
+  "published_axis_duration_seconds": 36,
+  "published_axis_note": "The retained MATLAB producer uses linspace(0, 36, 24000). At 2 kHz, 24000 samples contain 12 seconds; both axes are retained explicitly.",
+  "normalization": "Independent min-max normalization over each 24000-sample measured or predicted recording.",
+  "difference": "0.15 * (predicted_ecg_normalized - measured_ecg_normalized)",
+  "recording_labels": "Neutral identifiers; participant or source recording names were not retained with the legacy files."
+}

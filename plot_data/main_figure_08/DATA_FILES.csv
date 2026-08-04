@@ -1,0 +1,4 @@
+file,role,status,notes
+convtasnet.py,architecture source,retained original,Defines the Conv-TasNet architecture represented in the figure
+editable_architecture_drawing,figure input,unavailable,Original block-diagram artwork was not located
+README.md,provenance,package generated,Documents partial reproducibility

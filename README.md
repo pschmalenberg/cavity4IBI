@@ -56,6 +56,7 @@ This repository contains the source code, data processing pipelines, trained mod
 | Inference | Checkpoint + processed Figshare data | `python run_inference.py --dataset-root PATH` |
 | Training | Processed train/validation data | `python wav2ecg.py` |
 | Raw preprocessing | Figshare recordings | `preprocessing_matlab/` (MATLAB required) |
+| Published figures | Per-figure retained data and code | `plot_data/` (see its `README.md`) |
 | Circuit model | Included MATLAB source | `circuit_model/circuit_hemholtz.m` (MATLAB required) |
 | Numerical model | Included `.mph` files | COMSOL Multiphysics 6.3 required |
 
@@ -162,6 +163,7 @@ cavity4IBI/
 │   └── r_peaks.py                      # R-peak localization accuracy
 │
 ├── preprocessing_matlab/               # Raw → processed dataset generation (MATLAB)
+├── plot_data/                          # Per-figure source data, code, and manifests
 ├── data/                               # Figshare manifest and data instructions
 ├── ckpt/                               # Trained checkpoint (.pth) + manifest
 ├── reference_results/                  # Retained reference outputs and provenance
@@ -366,8 +368,10 @@ supplement corrections still required.
 **No random seed is set**, so exact bitwise retraining is not guaranteed.
 Reference results retained in `reference_results/` carry provenance caveats \u2014
 read [`reference_results/README.md`](reference_results/README.md) before using
-any of them as a baseline. Large per-figure source data and full per-window
-output arrays are archived externally rather than in Git.
+any of them as a baseline. Per-figure source data and its limitations are
+documented in [`plot_data/README.md`](plot_data/README.md) and
+[`plot_data/MISSING_SOURCES.md`](plot_data/MISSING_SOURCES.md); full per-window
+output arrays for P12 are archived externally rather than in Git.
 
 ---
 

@@ -1,0 +1,6 @@
+file,role,status,notes
+largeResonator_quarter.mph,scientific model,retained original,COMSOL quarter-symmetry large-resonator model
+inWall_resonator.mph,scientific model,retained original,COMSOL in-wall resonator model
+original_resonator_photograph,figure input,unavailable,Original panel-b photograph was not located
+final_geometry_exports,figure input,unavailable,Saved camera views color limits and annotations were not located
+README.md,provenance,package generated,Documents software and missing assets

@@ -1,0 +1,19 @@
+file,role,status,notes
+figure_S4.png,published figure,authoritative PDF extraction,Exact image embedded on supplementary PDF page 11; use this as Figure S4
+retained_source_export/grad_cam_activation_map.png,pre-PDF source export,retained original,Source raster before PDF placement
+retained_source_export/grad_cam_activation_map.svg,pre-PDF source export,retained original,Vector source before PDF placement
+retained_source_export/rendered_signal_paths.csv,render-derived plot data,generated from retained SVG,1512 simplified real- and predicted-ECG path vertices
+retained_source_export/rendered_activation_bars.csv,render-derived plot data,generated from retained SVG,8000 activation bars with rendered and approximate normalized heights
+retained_source_export/rendered_data_metadata.json,data provenance,generated from retained SVG,Source hash and date plus selectors calibrations row counts and caveats
+../extract_retained_svg_data.py,data extraction code,package generated,Deterministically regenerates the S3 and S4 render-derived tables
+candidate_recomputation_not_paper/,different-run method bundle,not the paper figure,Later traces and recomputed attribution do not match Figure S4
+original_data/paper_input_segment.npy,numerical input,recovered original,Exact 8000-sample P13 reference input for the paper segment
+original_data/paper_prediction_segment.npy,numerical input,recovered original,Exact plotted prediction shared with Figure S3
+original_data/paper_grad_cam_raw.npy,numerical input,recovered original,999-sample Grad-CAM before interpolation
+original_data/paper_grad_cam_upsampled.npy,numerical input,recovered original,Normalized 8000-sample Grad-CAM used for the S4 activation bars
+original_data/P13_reference_windows.npy,numerical source,recovered original,115 paired P13 reference windows used for continuous reconstruction
+original_data/P13_prediction_windows.npy,numerical source,recovered original,115 P13 model predictions used for continuous reconstruction
+original_data/recovery_metadata.json,data provenance,validated recovery,Shapes SHA-256 hashes source segment and quantitative SVG agreement
+original_data/recover_paper_arrays.py,recovery code,package generated,Reconstructs midpoint arrays and recomputes Grad-CAM from the archived checkpoint
+original_data/plot_recovered_gradcam.py,plotting code,package generated,Regenerates combined and separate Grad-CAM panels from local arrays
+README.md,provenance,package generated,Identifies the authoritative figure and warns against the later candidate output

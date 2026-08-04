@@ -1,0 +1,19 @@
+file,role,status,notes
+a.csv; b.csv; c.csv,numerical input,retained original,First measured ECG group
+d.csv; e.csv; f.csv,numerical input,retained original,First predicted ECG group
+aa.csv; bb.csv; cc.csv,numerical input,retained original,Second measured ECG group
+dd.csv; ee.csv; ff.csv,numerical input,retained original,Second predicted ECG group
+aaa.csv; bbb.csv; ccc.csv,numerical input,retained original,Third measured ECG group
+ddd.csv; eee.csv; fff.csv,numerical input,retained original,Third predicted ECG group
+fig5_gen.m,plot producer,retained original,Reads all 18 CSV files locally
+build_dataset.py,data producer,package generated,Validates legacy inputs and creates the structured data package
+plot_figure_05.py,plot producer,package generated,Plots the tidy table using published or native timing
+data/epochs/*.csv,structured numerical input,package generated,Nine paired measured and predicted four-second epoch tables
+data/figure5_plot_data.csv,plot-ready numerical input,package generated,Tidy 72000-row table used directly by the Python plotter
+data/source_file_map.csv,provenance mapping,package generated,Maps anonymous legacy files to recording and epoch identifiers
+data/metadata.json,metadata,package generated,Sampling transformation and timing provenance
+figure_05_python.png,plot output,package generated,Python reproduction using the published 0-36 second axis
+figure_05_native_time.png,plot output,package generated,Alternative using native 2 kHz timing
+requirements.txt,software environment,package generated,Pinned Python dependencies
+DATA_DICTIONARY.md,documentation,package generated,Defines structured data columns and transformations
+README.md,provenance,package generated,Documents Python and MATLAB reproduction

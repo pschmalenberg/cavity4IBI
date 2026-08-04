@@ -1,0 +1,69 @@
+{
+  "status": "recovered by exact waveform match to retained paper SVG",
+  "participant": "P13",
+  "recording": [
+    "B2",
+    "2025-10-07",
+    "13h48min"
+  ],
+  "sample_rate_hz": 2000,
+  "segment_start_sample": 230000,
+  "segment_start_time_sec_within_reconstructed_trace": 115.0,
+  "segment_samples": 8000,
+  "target_layer": "gen_masks",
+  "backward_target": "sum of ConvTasNet output waveform",
+  "prediction_svg_correlation": 0.9999999999999998,
+  "prediction_svg_mae": 2.5013136020115178e-09,
+  "prediction_svg_max_abs_error": 5.870728791990132e-09,
+  "grad_cam_vs_svg_color_approx_correlation": 0.9999552455699008,
+  "grad_cam_threshold_0_3_agreement": 0.997875,
+  "label_first_file": "[B2][2025-10-07][13h48min][2153,8sec].csv",
+  "label_last_file": "[B2][2025-10-07][13h48min][2381,8sec].csv",
+  "checkpoint": "ckpt/2025-11-22_23h02min/ckpt/2025-11-22_23h02min.pth",
+  "files": {
+    "input_segment": {
+      "path": "paper_input_segment.npy",
+      "sha256": "b8e45947157626c4a42161de5863d8db3c103867692517a592c6def2911fa58a",
+      "shape": [
+        8000
+      ]
+    },
+    "prediction_segment": {
+      "path": "paper_prediction_segment.npy",
+      "sha256": "18cabe34ce98cfadbf211456f129ffb67e6cac363b9493bfd73febb6e2128f29",
+      "shape": [
+        8000
+      ]
+    },
+    "grad_cam_raw": {
+      "path": "paper_grad_cam_raw.npy",
+      "sha256": "77da4a0fb134f0e93ac46c2303f1f6263fafbbc8d77dd56a150d1f1fc19eb55c",
+      "shape": [
+        999
+      ]
+    },
+    "grad_cam_upsampled": {
+      "path": "paper_grad_cam_upsampled.npy",
+      "sha256": "7e19e44a98a4ded5616aef2a4383d3d368014b95ef47815828b247187246bccf",
+      "shape": [
+        8000
+      ]
+    },
+    "reference_windows": {
+      "path": "P13_reference_windows.npy",
+      "sha256": "bc37c2f04e00b1c3358395c2dc2bd6b65ea66b3bf7ab60230b8b19906ea5519d",
+      "shape": [
+        115,
+        8000
+      ]
+    },
+    "prediction_windows": {
+      "path": "P13_prediction_windows.npy",
+      "sha256": "5a348ac604f0908c48dce105cb0cc03e2c73fe47f3a8d9e6e680fd9e64626bfa",
+      "shape": [
+        115,
+        8000
+      ]
+    }
+  }
+}

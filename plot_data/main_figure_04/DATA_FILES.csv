@@ -1,0 +1,6 @@
+file,role,status,notes
+HT06ex.mat,numerical input,retained original,Raw ECG and audio arrays
+HT06filt.mat,numerical input,retained original,Processed ECG and audio arrays
+fig4_gen.m,plot producer,retained original,Reads both MAT files locally
+editable_final_annotations,figure input,unavailable,Published callouts were added manually and their source was not located
+README.md,provenance,package generated,Documents MATLAB reproduction and annotation limitation

@@ -1,0 +1,4 @@
+file,role,status,notes
+cavity_data.mat,numerical input,retained original,Contains HBKMeasurement and ModelData
+plot_cav.m,plot producer,retained original,Reads cavity_data.mat locally
+README.md,provenance,package generated,Documents MATLAB reproduction
