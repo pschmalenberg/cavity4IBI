@@ -24,7 +24,6 @@ This repository contains the source code, data processing pipelines, trained mod
 ## Table of Contents
 
 - [What Can Be Reproduced](#what-can-be-reproduced)
-- [Submission Documentation](#submission-documentation)
 - [Installation](#installation)
   - [Prerequisites](#prerequisites)
   - [Setup](#setup)
@@ -55,16 +54,6 @@ This repository contains the source code, data processing pipelines, trained mod
 | Raw preprocessing | Figshare recordings | `preprocessing_matlab/` (MATLAB required) |
 | Circuit model | Included MATLAB source | `circuit_model/circuit_hemholtz.m` (MATLAB required) |
 | Numerical model | Included `.mph` files | COMSOL Multiphysics 6.3 required |
-
----
-
-## Submission Documentation
-
-- [`NATURE_ML_REPORTING_SUMMARY.md`](NATURE_ML_REPORTING_SUMMARY.md) — evidence-linked answers for every Nature Machine Learning Checklist V1.1 item
-- [`ML-reporting-summary-completed.pdf`](ML-reporting-summary-completed.pdf) — completed checklist
-- [`DATASET_CARD.md`](DATASET_CARD.md) — dataset identity, collection scope, exclusions, splits, intended use
-- [`MODEL_CARD.md`](MODEL_CARD.md) — model scope, architecture, checkpoint, evaluation, limitations
-- [`COMPUTE_RESOURCES.md`](COMPUTE_RESOURCES.md) — reported hardware and compute costs
 
 ---
 
