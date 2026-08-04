@@ -89,21 +89,6 @@ This repository contains the source code, data processing pipelines, trained mod
    pip install -r requirements.txt
    ```
 
-   Or install the package in editable mode with `pip install -e .`. The verified stack is:
-
-   | Package | Version |
-   |---------|---------|
-   | `torch` | 2.0.1 |
-   | `torchaudio` | 2.0.2 |
-   | `auraloss` | 0.4.0 |
-   | `neurokit2` | 0.2.5 |
-   | `dtw-python` | 1.5.3 |
-   | `scipy` | 1.10.0 |
-   | `numpy` | 1.25.2 |
-   | `pandas` | 2.0.3 |
-   | `matplotlib` | 3.7.2 |
-   | `tqdm` | 4.66.0 |
-
 ---
 
 ## Project Structure
@@ -202,25 +187,6 @@ processed/
 `-- [wide_gaussian]/  # paired 8,000-sample ECG CSV files
 ```
 
-The pipeline applies:
-
-1. **Resample** to a unified 2 kHz sample rate
-2. **Segment** recordings into 4-second windows (8,000 samples)
-   - Training / Validation: 50% overlap between consecutive segments
-   - Testing: No overlap
-3. **Discard** incomplete trailing segments
-4. **Filter** signals to the frequency range of interest:
-   - **ECG:** 0.5 Hz high-pass Butterworth filter (5th order) + powerline filtering via `neurokit2`
-   - **PCG:** 25–50 Hz band-pass Butterworth filter (5th order)
-5. **Save** pre-processed segments to `_processed/` folders:
-   - ECG → `.csv` format
-   - PCG → `.wav` format
-
-**During training**, additional augmentation is applied:
-
-6. **Normalize** each segment by dividing by its `max()` value
-7. **Add white Gaussian noise** at a randomly selected SNR level from {0, 30, 60, 90} dB — applied to PCG only
-
 ---
 
 ## Models
@@ -274,13 +240,6 @@ python predict.py path/to/your/recording.wav
 - `.wav` — Single-channel PCG audio
 - `.mat` — MATLAB file with `data` variable (channel 0 = ECG, channel 1 = PCG)
 
-The script will:
-1. Load and resample the input to 2 kHz
-2. Segment into overlapping 4-second windows
-3. Run inference on each segment
-4. Merge overlapping predictions via averaging
-5. Save the reconstructed ECG to `results/` in numpy (`.npy`) format
-
 ---
 
 ### Analysis Notebooks
@@ -314,18 +273,6 @@ This project builds on and references the following prior work:
 - **NeuroKit2:** Makowski, D. et al. (2021). *NeuroKit2: A Python toolbox for neurophysiological signal processing.* Behavior Research Methods, 53(4), 1689–1696. [DOI: 10.3758/s13428-020-01516-y](https://doi.org/10.3758/s13428-020-01516-y)
 
 - **AdamW:** Loshchilov, I., & Hutter, F. (2017). *Decoupled weight decay regularization.* arXiv:1711.05101.
-
----
-
-## Reproducibility Boundaries
-
-The Python implementation in this repository is the ground truth for training and
-evaluation; the MATLAB sources under `preprocessing_matlab/` are the ground truth
-for raw preprocessing.
-
-**No random seed is set**, so exact bitwise retraining is not guaranteed.
-Reference outputs, per-figure source data, and full per-window output arrays are
-archived externally rather than in Git.
 
 ---
 
