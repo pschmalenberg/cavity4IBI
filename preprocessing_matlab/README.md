@@ -22,14 +22,3 @@ final 10% to test (`[B2]`). Files marked `[P01EXTRA]` are training-only.
 Four-second windows use 0.3 s hops for training and validation and a 2 s hop
 for test.
 
-MATLAB inclusive indexing writes 8,001 samples for each nominal four-second
-pair. The Python loader truncates both channels to the first 8,000 samples
-before model use. This is the behavior used by the local generated dataset.
-
-The directory name `[wide_gaussian]` is historical: the `raw_ECG` scripts save
-the processed raw ECG target there. The 14 included `.m` files are byte-identical
-to the top-level sources in the local `dataset_generation_code` directory.
-Their sizes and SHA-256 hashes are recorded in
-[source_manifest.csv](source_manifest.csv). See
-`REPRODUCIBILITY_NOTES.md` for the paper text that must be corrected before
-submission.
